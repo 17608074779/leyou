@@ -83,4 +83,9 @@ public class BrandService {
 
         return brands;
     }
+
+    public Brand queryBrandById(Long id) {
+        Brand brand = this.brandMapper.selectByPrimaryKey(id);
+        return brand;
+    }
 }

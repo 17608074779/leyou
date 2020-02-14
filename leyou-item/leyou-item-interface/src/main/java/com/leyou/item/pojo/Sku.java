@@ -1,5 +1,7 @@
 package com.leyou.item.pojo;
 
+import org.omg.CORBA.Object;
+
 import javax.persistence.*;
 import java.util.Date;
 

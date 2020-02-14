@@ -68,4 +68,14 @@ public class BrandController {
     }
 
 
+    @GetMapping("{id}")
+    public ResponseEntity<Brand> queryBrandsById(@PathVariable("id")Long id){
+        Brand brand = this.brandService.queryBrandById(id);
+        if(brand == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(brand);
+
+    }
+
 }

@@ -38,4 +38,16 @@ public class CategoryController {
         return ResponseEntity.ok(categories);
     }
 
+
+    @GetMapping
+    public ResponseEntity<List<String>> queryNamesByIds(@RequestParam("ids")List<Long> ids){
+        List<String> names = this.categoryService.queryNameByIds(ids);
+        if(CollectionUtils.isEmpty(names)){
+            // 404: 资源未找到
+            return ResponseEntity.notFound().build();
+        }
+        // 200: 返回数据成功
+        return ResponseEntity.ok(names);
+    }
+
 }
