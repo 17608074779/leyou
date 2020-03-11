@@ -6,10 +6,11 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:10086/eureka
+      defaultZone: http://127.0.0.1:10086/eureka
     registry-fetch-interval-seconds: 5      #拉取服务的间隔时间
 zuul:
   prefix: /api
   routes:
     item-service: /item/**   #  路由权限，路由到商品的微服务
     search-service: /search/**
+    user-service: /user/**

@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@Component
+@RequestMapping("category")
 public interface CategoryApi {
 
-    @GetMapping("category")
-    public List<String> queryNamesByIds(@RequestParam("ids")List<Long> ids);
+    @GetMapping("names")
+    public List<String> queryNamesByIds(@RequestParam("ids") List<Long> ids);
 }

@@ -1,7 +1,9 @@
 package com.leyou.elasticsearch.test;
 
+import com.leyou.LeyouSearchApplication;
 import com.leyou.common.pojo.PageResult;
 import com.leyou.item.bo.SpuBo;
+import com.leyou.item.pojo.Spu;
 import com.leyou.search.client.GoodsClient;
 import com.leyou.search.pojo.Goods;
 import com.leyou.search.repository.GoodsRepository;
@@ -44,13 +46,13 @@ public class ElasticsearchTest {
 
         do {
             //分页查询spu，获取分页结果集
-            PageResult<SpuBo> result = this.goodsClient.querySpuByPage(null, null, page, rows);
+            PageResult<SpuBo> result = this.goodsClient.querySpuByPage(null, true, page, rows);
             //获取当前页的数据
             List<SpuBo> items = result.getItems();
             //处理List<SpuBo> ==> List<Goods>
             List<Goods> goodsList = items.stream().map(spuBo -> {
                 try {
-                    return this.searchService.buildGoods(spuBo);
+                    return this.searchService.buildGoods((Spu) spuBo);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -64,12 +66,12 @@ public class ElasticsearchTest {
         } while(rows == 100);
 
 
-
     }
 
-
-
-
+    @Test
+    public void del(){
+        elasticsearchTemplate.deleteIndex(Goods.class);
+    }
 
 
 }
